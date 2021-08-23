@@ -4,6 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const { error404Handler,generalErrorHandler } = require("./middleware");
+const routes = require("./routes");
 
 var app = express();
 
@@ -23,13 +24,14 @@ app.use(express.static(path.join(__dirname, "public")));
  * Conexión a la base de datos
  */
 require("./services/mongoDB");
-require("./models/Anuncio");
-require("./controllers/AnuncioController");
+// require("./apiServices/anuncios/model");
+// require("./apiServices/anuncios/controller");
 
 /**
  * Rutas de mi API
  */
-app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
+// app.use("/apiv1/anuncios", require("./routes/apiv1/routes"));
+app.use("/apiv1/", routes);
 
 // Variables globales para vistas
 app.locals.title = "NodePop";
@@ -37,8 +39,7 @@ app.locals.title = "NodePop";
 /**
  * Rutas de mi aplicación web
  */
-app.use("/",      require("./routes/index"));
-app.use("/users", require("./routes/users"));
+app.use("/",require("./routes/index"));
 app.use(error404Handler); // catch 404 and forward to error handler
 app.use(generalErrorHandler); // error handler
 

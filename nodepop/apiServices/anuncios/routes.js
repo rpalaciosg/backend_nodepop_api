@@ -1,17 +1,17 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const anuncioController = require('../../controllers/AnuncioController');
-const Anuncio = require('../../models/Anuncio');
+const anuncioController = require("../../apiServices/anuncios/controller");
+const Anuncio = require("../../apiServices/anuncios/model");
 
 /**
  * GET /anuncios
  * Devuelve una lista de anuncios
  * http://localhost:3000/apiv1/anuncios
  */
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     try {
         const skip = parseInt(req.query.start);
         const limit = parseInt(req.query.limit);
@@ -34,7 +34,7 @@ router.get('/', async (req, res, next) => {
         // const cursor = db.collection('anuncios').find({ tags: { $in: ['work','stylelife']}});
         if (tags !== "") {                    
             const extTags = tags.split(" ");     
-            filter.tags = {  '$in': extTags };            
+            filter.tags = {  "$in": extTags };            
         }
 
         if (venta) {
@@ -49,12 +49,12 @@ router.get('/', async (req, res, next) => {
                     res.status(422).json({success: false, error:"El primero parámetro del rango de precio debe ser menor"});                                            
                     return;
                 }
-                filter.precio = { '$gte': extPrecio[0], '$lte': extPrecio[1] };                
+                filter.precio = { "$gte": extPrecio[0], "$lte": extPrecio[1] };                
             } else if (patPreMayor.test(precio)) {
-                filter.precio = { '$gte': extPrecio[0] };
+                filter.precio = { "$gte": extPrecio[0] };
                 console.log("arma precio mayor -->", filter.precio);
             } else if (patPreMenor.test(precio)) {                
-                filter.precio = { '$lte': parseInt(extPrecio[1]) };
+                filter.precio = { "$lte": parseInt(extPrecio[1]) };
                 console.log("arma precio menor -->", filter.precio);
             } else if (patPreIgual.test(precio)) {
                 filter.precio = parseInt(extPrecio[0]);
@@ -63,7 +63,7 @@ router.get('/', async (req, res, next) => {
         }
 
         if (nombre) {
-            filter.nombre = {$regex: new RegExp('^' + nombre + '.*', 'i')};
+            filter.nombre = {$regex: new RegExp("^" + nombre + ".*", "i")};
         }
 
         const anuncios = await anuncioController.listaAnuncios({filter:filter, skip, limit, fields, sort});
@@ -78,7 +78,7 @@ router.get('/', async (req, res, next) => {
  * Obtiene el listado de tags existentes
  * http://localhost:3000/apiv1/anuncios/tags
  */
-router.get('/tags', async (req, res, next) => {
+router.get("/tags", async (req, res, next) => {
     try {
         const tagList = await anuncioController.listaTags();
         res.json({ success: true, results: tagList });
@@ -92,7 +92,7 @@ router.get('/tags', async (req, res, next) => {
  * Obtiene un agente mediante el :id
  * http://localhost:3000/apiv1/anuncios/:id
  */
-router.get('/:id', async(req, res, next) => {
+router.get("/:id", async(req, res, next) => {
     try {
         const _id = req.params.id;        
         const anuncio = await anuncioController.consultarUnAnuncio(_id);        
@@ -110,7 +110,7 @@ router.get('/:id', async(req, res, next) => {
  * Crea un anuncio 
  * http://localhost:3000/apiv1/anuncios
  */
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
     try {
         const data = req.body;
         const anuncio = new Anuncio(data);
@@ -126,7 +126,7 @@ router.post('/', async (req, res, next) => {
  * Actualiza un anuncio
  * http://localhost:3000/apiv1/anuncios/:id
  */
-router.put('/:id', async(req, res, next) => {
+router.put("/:id", async(req, res, next) => {
     try {
         const _id = req.params.id;
         const data = req.body;
