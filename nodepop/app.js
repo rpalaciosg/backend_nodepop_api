@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 /**
  * Conexión a la base de datos
  */
-require("./lib/connectDB");
+require("./services/mongoDB");
 require("./models/Anuncio");
 require("./controllers/AnuncioController");
 
