@@ -1,94 +1,120 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>    
-  </head>
-  <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm bg-dark">
-      <h5 class="my-0 mr-md-auto font-weight-normal">
-          <a class="py-2" style="text-decoration: none;" href="#">
-              <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><strong>NodePop</strong></font></font>
-          </a>
-        </h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="https://github.com/rpalaciosg/kc_backend_nodejs_web7" target="blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Código fuente </font></font></a>
-      </nav>
-      <a class="btn btn-outline-secondary" href="https://documenter.getpostman.com/view/3162339/SVn3sFCr" target="blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Documentación</font></font></a>
-    </div>
 
-      <div class=" jumbotron position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <div class="col-md-5 p-lg-5 mx-auto my-5">
-          <h1 class="display-4 font-weight-normal">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">
-                <%= title %>
-              </font>
-            </font>
-          </h1>
-          <p class="lead font-weight-normal">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">
-                Tienes productos que quieres vender?, o buscas productos usados y de buena calidad?
-              </font>
-              <font style="vertical-align: inherit;">
-                  Anuncia tus productos aquí.
-              </font>
-            </font>
-          </p>
-          <a class="btn btn-outline-info" href="#">
-            <font style="vertical-align: inherit;">
-              <font style="vertical-align: inherit;">Crea un Anuncio aquí!</font>
-            </font>
-          </a>
-        </div>
-        <div class="product-device shadow-sm d-none d-md-block"></div>
-        <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-      </div>
-    <div class="container">
-      <h2>Lista de Anuncios</h2>  
-      <div class="d-flex flex-row flex-wrap">
-        <% anuncios.forEach(anuncio => {%>
-          
-          <div class="col-lg-4 col-md-6 mb-4">
-              <div class="card h-100 shadow-sm rounded">
-              <% 
-                let foto = "/images/anuncios/" + anuncio.foto;                 
-                let trim_url = foto.trim();                                         
-               %>
-                <a href="#"><img class="card-img-top" src="<%=trim_url%>" alt=""></a>
-              <%
-              if (foto === "/images/anuncios/"){%>
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Marcador de posición: miniatura"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-              <%}%>
-                <div class="card-body">
-                  <h4 class="card-title">
-                    <a href="#"> <%= anuncio.nombre %> </a>                                         
-                    <%if(anuncio.venta){%>
-                      <span class="badge badge-success" style="font-size: 12px;">Venta</span>                        
-                    <%}%>
-                    <%if(!anuncio.venta){%>                        
-                      <span class="badge badge-warning" style="font-size: 12px;">Compra</span>
-                    <%}%>                             
-                  </h4>
-                  <h5>$<%= anuncio.precio %></h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted"></small>
-                  <% anuncio.tags.forEach(tag => {%>
-                    <a href="#" class="badge outline badge-pill badge-secondary"><%=tag%></a>
-                  <%})%>
-                </div>
-              </div>
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div
+    class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm bg-dark">
+    <h5 class="my-0 mr-md-auto font-weight-normal">
+      <a class="py-2" style="text-decoration: none;" href="#">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;"><strong>NodePop</strong></font>
+        </font>
+      </a>
+    </h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="https://github.com/rpalaciosg/kc_backend_nodejs_web7" target="blank">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Código fuente </font>
+        </font>
+      </a>
+    </nav>
+    <a class="btn btn-outline-secondary" href="https://documenter.getpostman.com/view/3162339/SVn3sFCr" target="blank">
+      <font style="vertical-align: inherit;">
+        <font style="vertical-align: inherit;">Documentación</font>
+      </font>
+    </a>
+  </div>
+
+  <div class=" jumbotron position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+    <div class="col-md-5 p-lg-5 mx-auto my-5">
+      <h1 class="display-4 font-weight-normal">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">
+            <%= title %>
+          </font>
+        </font>
+      </h1>
+      <p class="lead font-weight-normal">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">
+            Tienes productos que quieres vender?, o buscas productos usados y de buena calidad?
+          </font>
+          <font style="vertical-align: inherit;">
+            Anuncia tus productos aquí.
+          </font>
+        </font>
+      </p>
+      <a class="btn btn-outline-info" href="#">
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">Crea un Anuncio aquí!</font>
+        </font>
+      </a>
+    </div>
+    <div class="product-device shadow-sm d-none d-md-block"></div>
+    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+  </div>
+  <div class="container">
+    <h2>Lista de Anuncios</h2>
+    <div class="d-flex flex-row flex-wrap">
+      <% anuncios.forEach(anuncio=> {%>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 shadow-sm rounded">
+            <% let foto="/images/anuncios/" + anuncio.foto; let trim_url=foto.trim(); %>
+              <a href="#"><img class="card-img-top" src="<%=trim_url%>" alt=""></a>
+              <% if (foto==="/images/anuncios/" ){%>
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="100%"
+                  xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
+                  aria-label="Marcador de posición: miniatura">
+                  <title>Placeholder</title>
+                  <rect width="100%" height="100%" fill="#55595c"></rect><text x="40%" y="50%" fill="#eceeef"
+                    dy=".3em">Thumbnail</text>
+                </svg>
+                <%}%>
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      <a href="#">
+                        <%= anuncio.nombre %>
+                      </a>
+                      <%if(anuncio.venta){%>
+                        <span class="badge badge-success" style="font-size: 12px;">Venta</span>
+                        <%}%>
+                          <%if(!anuncio.venta){%>
+                            <span class="badge badge-warning" style="font-size: 12px;">Compra</span>
+                            <%}%>
+                    </h4>
+                    <h5>$<%= anuncio.precio %>
+                    </h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted"></small>
+                    <% anuncio.tags.forEach(tag=> {%>
+                      <a href="#" class="badge outline badge-pill badge-secondary">
+                        <%=tag%>
+                      </a>
+                      <%})%>
+                  </div>
           </div>
+        </div>
 
-          <%})%>  
+        <%})%>
 
-      </div> 
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

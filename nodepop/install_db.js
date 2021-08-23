@@ -4,10 +4,10 @@ const fs = require("fs");
 const fsPromises = fs.promises;
 
 const mongoose = require("mongoose");
-const conn = require("./lib/connectDB");
+const conn = require("./services/mongoDB");
 const Anuncio = require("./models/Anuncio");
 
-const file = "./data/anuncios.json";
+const file = "./services/data/anuncios.json";
 const data = JSON.parse(fs.readFileSync(file,"utf-8"));
 
 // conectar

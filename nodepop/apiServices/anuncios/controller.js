@@ -1,6 +1,6 @@
 "use strict";
 
-let Anuncio = require("../models/Anuncio");
+let Anuncio = require("./model");
 
 // var anuncioController = {};
 

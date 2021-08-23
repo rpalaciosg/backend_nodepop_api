@@ -4,7 +4,7 @@
 const mongoose = require("mongoose");
 const conn = mongoose.connection;
 
-mongoose.set('useFindAndModify', false);
+mongoose.set("useFindAndModify", false);
 
 // gestionar eventos de conexión
 conn.on("error", err => {
@@ -18,6 +18,5 @@ conn.once("open", () =>  {
 
 // conectar
 mongoose.connect("mongodb://127.0.0.1/nodepop", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
-
 // exportar la conexión
 module.exports = conn;
