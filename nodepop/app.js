@@ -46,13 +46,13 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // comprueba error de validaciòn
+  // comprueba error de validación
   if (err.array) {
     err.status = 422;
     const errInfo = err.array({ onlyFirstError: true })[0];
-    err.message = isAPI(req) 
-    ? {message: 'Not valid', errors: err.mapped()}
-    : `Not valid - ${errInfo.param} ${errInfo.msg}`;
+    err.message = isAPI(req)
+      ? {message: 'Not valid', errors: err.mapped()}
+      : `Not valid - ${errInfo.param} ${errInfo.msg}`;
   }
   res.status(err.status || 500);
   if(isAPI(req)) {
@@ -66,7 +66,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// funcion para saber si es una petición a un API
+// función para saber si es una petición a un API
 function isAPI(req) {
   return req.originalUrl.indexOf('/api') === 0;
 }

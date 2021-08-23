@@ -6,9 +6,9 @@ const conn = mongoose.connection;
 
 mongoose.set('useFindAndModify', false);
 
-// gestionar eventos de conexion
+// gestionar eventos de conexión
 conn.on("error", err => {
-    console.log("Error de conexiòn", err);
+    console.log("Error de conexión", err);
     process.exit(1);
 });
 
@@ -17,7 +17,7 @@ conn.once("open", () =>  {
 });
 
 // conectar
-mongoose.connect("mongodb://localhost/nodepop", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect("mongodb://127.0.0.1/nodepop", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
-// exportar la conexiòn
+// exportar la conexión
 module.exports = conn;
