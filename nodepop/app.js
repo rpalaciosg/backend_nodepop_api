@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const { error404Handler,generalErrorHandler } = require("./middleware");
 const routes = require("./routes");
+const config = require("config");
 
 var app = express();
 
@@ -27,11 +28,14 @@ require("./services/mongoDB");
 // require("./apiServices/anuncios/model");
 // require("./apiServices/anuncios/controller");
 
+//TODO: add documentation with swagger https://www.youtube.com/watch?v=S8kmHtQeflo&t=859s
+
 /**
  * Rutas de mi API
  */
-// app.use("/apiv1/anuncios", require("./routes/apiv1/routes"));
-app.use("/apiv1/", routes);
+// app.use("/api/anuncios", require("./routes/api/routes"));
+// app.use("/api/", routes);
+app.use(config.get("App.restApiEndpoint.version1AnunciosPath"), routes);
 
 // Variables globales para vistas
 app.locals.title = "NodePop";

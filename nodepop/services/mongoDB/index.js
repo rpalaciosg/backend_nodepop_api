@@ -2,6 +2,7 @@
 
 // cargar librería de mongoose
 const mongoose = require("mongoose");
+const config = require("config");
 const conn = mongoose.connection;
 
 mongoose.set("useFindAndModify", false);
@@ -17,6 +18,7 @@ conn.once("open", () =>  {
 });
 
 // conectar
-mongoose.connect("mongodb://127.0.0.1/nodepop", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+// mongoose.connect("mongodb://127.0.0.1/nodepop", { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+mongoose.connect(config.get("MongoDB.connectionString"),{ useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 // exportar la conexión
 module.exports = conn;

@@ -1,18 +1,20 @@
 "use strict";
 
 const fs = require("fs");
+const config = require("config");
 const fsPromises = fs.promises;
 
 const mongoose = require("mongoose");
-const conn = require("./services/mongoDB");
-const Anuncio = require("./models/Anuncio");
+const conn = require("../services/mongoDB");
+// const Anuncio = require("./models/Anuncio");
+const Anuncio = require("../apiServices/anuncios/model");
 
 const file = "./services/data/anuncios.json";
 const data = JSON.parse(fs.readFileSync(file,"utf-8"));
 
 // conectar
-mongoose.connect("mongodb://127.0.0.1/nodepop" , { useNewUrlParser: true, useUnifiedTopology: true });
-
+// mongoose.connect("mongodb://127.0.0.1/nodepop" , { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(config.get("MongoDB.connectionString"),{ useNewUrlParser: true, useUnifiedTopology: true });
 
 async function cleanAgentes() {
     try {
