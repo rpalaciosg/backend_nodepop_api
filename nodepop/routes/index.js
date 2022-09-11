@@ -4,9 +4,11 @@ const express = require("express");
 const router = express.Router();
 const anuncioController = require("../apiServices/anuncios/controller");
 const anuncios = require("../apiServices/anuncios/routes");
+const swaggerUI = require("swagger-ui-express");
+const swaggerSpecs = require("../services/swagger/index");
 
 /* GET home page. */
-router.get("/", async function(req, res, next) {  
+router.get("/", async function (req, res, next) {
   try {
     const skip = parseInt(req.query.start);
     const limit = parseInt(req.query.limit);
@@ -21,16 +23,21 @@ router.get("/", async function(req, res, next) {
       filter.tags = tags;
     }
 
-    res.locals.anuncios = await anuncioController.listaAnuncios({filter:filter, skip, limit, sort});
-    res.render("index"); 
+    res.locals.anuncios = await anuncioController.listaAnuncios({
+      filter: filter,
+      skip,
+      limit,
+      sort,
+    });
+    res.render("index");
   } catch (err) {
     next(err);
   }
-   
 });
 
 router.use("/anuncios", anuncios);
 
 // router.use("/users", users);
+router.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpecs));
 
 module.exports = router;
