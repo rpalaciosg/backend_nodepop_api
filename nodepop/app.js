@@ -1,9 +1,8 @@
-var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const { error404Handler,generalErrorHandler } = require("./middleware");
+const { error404Handler, generalErrorHandler } = require("./middleware");
 const routes = require("./routes");
 const config = require("config");
 
@@ -43,7 +42,7 @@ app.locals.title = "NodePop";
 /**
  * Rutas de mi aplicación web
  */
-app.use("/",require("./routes/index"));
+app.use("/", require("./routes/index"));
 app.use(error404Handler); // catch 404 and forward to error handler
 app.use(generalErrorHandler); // error handler
 
