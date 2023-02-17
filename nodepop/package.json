@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "cross-env DEBUG=nodepop:* nodemon",
+    "dev": "cross-env NODE_ENV=development DEBUG=nodepop:* nodemon",
     "prod": "cross-env NODE_ENV=production npm start",
-    "installDB": "node ./install_db.js"
+    "installDB": "node ./scripts/install_db.js",
+    "test": "supertest test/*.js"
   },
   "dependencies": {
+    "config": "^3.3.9",
     "cookie-parser": "~1.4.5",
     "cross-env": "^5.2.0",
     "debug": "~2.6.9",
@@ -20,6 +22,7 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "eslint": "^6.4.0"
+    "eslint": "^6.4.0",
+    "supertest": "^6.1.6"
   }
 }

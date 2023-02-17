@@ -1,11 +1,12 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const anuncioController = require('../controllers/AnuncioController');
+const anuncioController = require("../apiServices/anuncios/controller");
+const anuncios = require("../apiServices/anuncios/routes");
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {  
+router.get("/", async function(req, res, next) {  
   try {
     const skip = parseInt(req.query.start);
     const limit = parseInt(req.query.limit);
@@ -21,11 +22,15 @@ router.get('/', async function(req, res, next) {
     }
 
     res.locals.anuncios = await anuncioController.listaAnuncios({filter:filter, skip, limit, sort});
-    res.render('index'); 
+    res.render("index"); 
   } catch (err) {
     next(err);
   }
    
 });
+
+router.use("/anuncios", anuncios);
+
+// router.use("/users", users);
 
 module.exports = router;
