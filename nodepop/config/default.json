@@ -1,0 +1,15 @@
+{
+	"App": {
+		"restApiEndpoint":{
+			"version1AnunciosPath":"/apiv1"
+		},
+		"webServer":{
+			"protocol": "http",
+			"host": "localhost",
+			"port": 3000
+		}
+	},
+	"MongoDB": {
+		"connectionString": "mongodb://localhost/nodepop"
+	}
+}
