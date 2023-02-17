@@ -10,8 +10,8 @@
     "test": "supertest test/*.js"
   },https://github.com/rpalaciosg/backend_nodepop_api/pull/28/conflict?name=nodepop%252Fpackage.json&ancestor_oid=d1c074cc2118dd554f9549f059946281c039e442&base_oid=cdc9423e9d36eddbb989c94dfa6c667f828e257b&head_oid=fce46f126c4fef0734e43c7e4f8d468881bea850
   "dependencies": {
-    "config": "^3.3.6",
-    "cookie-parser": "~1.4.6",
+    "config": "^3.3.7",
+    "cookie-parser": "~1.4.5",
     "cross-env": "^5.2.0",
     "debug": "~2.6.9",
     "ejs": "~3.1.6",
