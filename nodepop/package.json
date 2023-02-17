@@ -8,17 +8,17 @@
     "prod": "cross-env NODE_ENV=production npm start",
     "installDB": "node ./scripts/install_db.js",
     "test": "supertest test/*.js"
-  },
+  },https://github.com/rpalaciosg/backend_nodepop_api/pull/28/conflict?name=nodepop%252Fpackage.json&ancestor_oid=d1c074cc2118dd554f9549f059946281c039e442&base_oid=cdc9423e9d36eddbb989c94dfa6c667f828e257b&head_oid=fce46f126c4fef0734e43c7e4f8d468881bea850
   "dependencies": {
-    "config": "^3.3.6",
+    "config": "^3.3.8",
     "cookie-parser": "~1.4.5",
     "cross-env": "^5.2.0",
     "debug": "~2.6.9",
     "ejs": "~3.1.8",
     "ejs-lint": "^1.2.1",
-    "express": "~4.17.1",
+    "express": "~4.18.2",
     "http-errors": "~1.6.3",
-    "mongoose": "^5.12.3",
+    "mongoose": "^5.13.15",
     "morgan": "~1.10.0"
   },
   "devDependencies": {
