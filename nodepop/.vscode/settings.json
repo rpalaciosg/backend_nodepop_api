@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "workbench.colorCustomizations": {
     "activityBar.background": "#063718",
     "titleBar.activeBackground": "#010904",
@@ -17,3 +18,35 @@
   },
   "peacock.color": "#010904"
 }
+=======
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#88d7ea",
+        "activityBar.activeBorder": "#de41bf",
+        "activityBar.background": "#88d7ea",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#de41bf",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#5dc8e2",
+        "statusBar.foreground": "#15202b",
+        "statusBarItem.hoverBackground": "#32b9da",
+        "titleBar.activeBackground": "#5dc8e2",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveBackground": "#5dc8e299",
+        "titleBar.inactiveForeground": "#15202b99",
+        "editorGroup.border": "#88d7ea",
+        "panel.border": "#88d7ea",
+        "sash.hoverBorder": "#88d7ea",
+        "sideBar.border": "#88d7ea",
+        "statusBarItem.remoteBackground": "#5dc8e2",
+        "statusBarItem.remoteForeground": "#15202b"
+    },
+    "peacock.remoteColor": "#5dc8e2",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "markdown.extension.tableFormatter.normalizeIndentation": true,
+    "prettier.endOfLine": "auto",
+    "prettier.tabWidth": 4,
+    "typescript.preferences.quoteStyle": "double"
+}
+>>>>>>> 990f8410396b7b2f95afc834d900fc34f38ac759

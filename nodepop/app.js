@@ -1,10 +1,14 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
-var app = express();
+const app = express();
+const { error404Handler, generalErrorHandler } = require("./middleware");
+const routes = require("./routes");
+const config = require("config");
+const cors = require("cors");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -17,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(cors);
 
 /**
  * Conexión a la base de datos
@@ -24,6 +29,9 @@ app.use(express.static(path.join(__dirname, "public")));
 require("./lib/connectDB");
 require("./models/Anuncio");
 require("./controllers/AnuncioController");
+require("./services/mongoDB");
+
+//TODO: add documentation with swagger https://www.youtube.com/watch?v=S8kmHtQeflo&t=859s
 
 /**
  * Rutas de mi API
@@ -31,6 +39,9 @@ require("./controllers/AnuncioController");
 app.use("/apiv1/anuncios", require("./routes/apiv1/anuncios"));
 
 // Variables goblales para vistas
+app.use(config.get("App.restApiEndpoint.version1AnunciosPath"), routes);
+
+// Variables globales para vistas
 app.locals.title = "NodePop";
 
 /**
@@ -70,5 +81,8 @@ app.use(function(err, req, res, next) {
 function isAPI(req) {
   return req.originalUrl.indexOf("/api") === 0;
 }
+app.use("/", require("./routes/index"));
+app.use(error404Handler); // catch 404 and forward to error handler
+app.use(generalErrorHandler); // error handler
 
 module.exports = app;

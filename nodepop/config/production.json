@@ -1,0 +1,11 @@
+{
+	"App": {
+		"WebServer": {
+			"host": "127.0.0.1",
+			"port": 8080
+		}
+	},
+	"MongoDB": {
+		"connectionString": "mongodb://127.0.0.1/nodepop"
+	}
+}
